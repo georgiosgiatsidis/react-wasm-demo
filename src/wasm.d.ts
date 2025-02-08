@@ -7,13 +7,13 @@ declare module '@/wasm/image_filter.js' {
     _malloc: (size: number) => number;
     _free: (ptr: number) => void;
     HEAPU8: Uint8Array;
-    cwrap: (
+    cwrap: <R, A extends unknown[]>(
       ident: string,
       returnType: string | null,
       argTypes: string[]
-    ) => (...args: any[]) => any;
+    ) => (...args: A) => R;
   }
 
-  const moduleFactory: (moduleArg?: any) => Promise<Module>;
+  const moduleFactory: () => Promise<Module>;
   export default moduleFactory;
 }

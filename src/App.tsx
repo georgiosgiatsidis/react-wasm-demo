@@ -43,18 +43,18 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
-      <h1 className="text-3xl font-bold mb-4">WASM Image Processor</h1>
+    <div className="min-h-screen bg-zinc-800 flex flex-col items-center justify-center p-4">
+      <h1 className="text-3xl font-bold mb-4 text-white">WASM Image Processor</h1>
       <input
         type="file"
         accept="image/*"
         onChange={handleImageUpload}
-        className="mb-4 p-2 border border-gray-300 rounded"
+        className="text-white mb-4 p-2 border border-gray-300 rounded-md"
       />
       <select
         value={filter}
         onChange={handleFilterChange}
-        className="mb-4 p-2 border border-gray-300 rounded"
+        className="text-white mb-4 p-2 border border-gray-300 rounded-md"
       >
         {Object.entries(Filter).map(([filterName, filterValue]) => (
           <option key={filterValue} value={filterValue}>
@@ -67,14 +67,14 @@ function App() {
           <img
             src={image}
             alt="Original"
-            className="mb-4 max-w-full h-auto border border-gray-300 rounded"
+            className="mb-4 max-w-full h-auto border border-gray-300 rounded-md"
           />
         )}
         {processedImage && (
           <img
             src={processedImage}
             alt="Processed"
-            className="max-w-full h-auto border border-gray-300 rounded"
+            className="max-w-full h-auto border border-gray-300 rounded-md"
           />
         )}
       </div>
