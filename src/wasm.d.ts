@@ -1,5 +1,5 @@
 declare module '@/wasm/image_filter.js' {
-  interface Module {
+  export interface Module {
     _grayscale: (ptr: number, width: number, height: number) => void;
     _sepia: (ptr: number, width: number, height: number) => void;
     _invert: (ptr: number, width: number, height: number) => void;

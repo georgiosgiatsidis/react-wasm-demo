@@ -1,4 +1,4 @@
-import { loadWasmModule } from '@/helpers/loadWasmModule';
+import { getWasmModule } from '@/helpers/loadWasmModule';
 import { Filter } from '@/types/Filter';
 
 export async function processImage(
@@ -7,7 +7,7 @@ export async function processImage(
   height: number,
   filter: Filter
 ) {
-  const { wasmModule, filters } = await loadWasmModule();
+  const { wasmModule, filters } = await getWasmModule();
 
   // Allocate memory in WebAssembly
   const buffer = wasmModule._malloc(data.length);

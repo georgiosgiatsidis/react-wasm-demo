@@ -1,4 +1,19 @@
-export async function loadWasmModule() {
+import { Filter } from '@/types/Filter';
+import { Module } from '@/wasm/image_filter.js';
+
+let wasmModuleCache: Module;
+let filtersCache: Record<Filter, (...args: number[]) => void>;
+
+export async function getWasmModule() {
+  if (!wasmModuleCache || !filtersCache) {
+    const { wasmModule, filters } = await loadWasmModule();
+    wasmModuleCache = wasmModule;
+    filtersCache = filters;
+  }
+  return { wasmModule: wasmModuleCache, filters: filtersCache };
+}
+
+async function loadWasmModule() {
   const Module = await import('@/wasm/image_filter.js');
   const wasmModule = await Module.default();
 
