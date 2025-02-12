@@ -14,6 +14,17 @@ declare module '@/wasm/image_filter.js' {
     ) => (...args: A) => R;
   }
 
-  const moduleFactory: () => Promise<Module>;
+  const moduleFactory: ({
+    preRun,
+    onRuntimeInitialized,
+    postRun,
+    onAbort,
+  }?: Partial<{
+    preRun: (() => void)[];
+    onRuntimeInitialized: () => void;
+    postRun: (() => void)[];
+    onAbort: (err: unknown) => void;
+  }>) => Promise<Module>;
+
   export default moduleFactory;
 }

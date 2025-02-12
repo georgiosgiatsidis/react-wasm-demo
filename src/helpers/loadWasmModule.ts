@@ -15,7 +15,13 @@ export async function getWasmModule() {
 
 async function loadWasmModule() {
   const Module = await import('@/wasm/image_filter.js');
-  const wasmModule = await Module.default();
+
+  const wasmModule = await Module.default({
+    preRun: [() => console.log('🚀 WASM is about to start!')],
+    onRuntimeInitialized: () => console.log('✅ WASM is ready!'),
+    postRun: [() => console.log('🏁 WASM execution finished!')],
+    onAbort: (err) => console.error('❌ WASM crashed:', err),
+  });
 
   const filters = {
     grayscale: wasmModule.cwrap<void, number[]>('grayscale', null, [
